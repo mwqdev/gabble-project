@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    header
+        nav
+            ul
+                a(href='/gabs')
+                    li Gabble
+                a(href='/gabs/create')
+                    li Create a new gab
+                a(href='/users/profile')
+                    li #{user}'s profile
+                a(href='/signout')
+                    li Log out
+    h1 Create a gab
+    div.formWrapper
+        section.form
+            form(method='post' action='/gabs/create')
+                label(for='title') Title
+                input(type='text', name='title' id='title')
+                label(for='content') Content
+                input(type='textarea', name='content' id='content')
+                input.button(type='submit')
+    if gabs
+        ul
+            each val in gabs
+                li= val.content

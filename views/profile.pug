@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    header
+        nav
+            ul
+                a(href='/gabs')
+                    li Gabble
+                a(href='/gabs/create')
+                    li Create a new gab
+                a(href='/users/profile')
+                    li #{user}'s profile
+                a(href='/signout')
+                    li Log out
+    h1= title
+    div.welcome
+        p Welcome to your profile, #{user}!

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    header
+        nav
+            ul
+                a(href='/gabs')
+                    li Gabble
+                a(href='/users')
+                    li Log in
+                a(href='/users/signup')
+                    li Sign up
+    section.formWrapper
+        h1 Sign-in
+        section.form
+            form(method='post')
+                label(for='username') Username
+                input(type='text', name='username', id='username')
+                label(for='password') Password
+                input(type='password', name='password', id='password')
+                input.button(type='submit')
+                a.signup(href='/users/signup') Sign-up
