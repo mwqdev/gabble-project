@@ -1,0 +1,193 @@
+extends layout
+
+block content
+    // Navigation Section
+    nav.blue-grey.darken-1.z-depth-3(role='navigation')
+        div.nav-wrapper.container
+            a.brand-logo#logo-container
+                span.logo.grey-text.text-lighten-2 Michael Quarles
+            ul.right.hide-on-med-and-down
+                li
+                    a(href='#') Services
+                li
+                    a(href='#') About
+                li
+                    a(href='#') Work
+                li
+                    a(href='#') Blog
+                li
+                    a(href='#') Contact
+            ul.side-nav#nav-mobile(style='transform: translateX(-100%);')
+                li
+                    a(href='#') Services
+                li
+                    a(href='#') About
+                li
+                    a(href='#') Work
+                li
+                    a(href='#') Blog
+                li
+                    a(href='#') Contact
+            a.button-collapse(href='#', data-activates='nav-mobile')
+                i.material-icons menu
+    // Hero Section
+    div.parallax-container.valign-wrapper.z-depth-3
+        div.container
+            div.row
+                div.col.l8.s12.white-text.right
+                    h4.thin-text.left-align.valign freelance web designer &amp; developer based in Charleston, South Carolina
+            div.row
+                div.col.l4.right
+                    a.waves-effect.btn-large.hoverable.red.accent-2 Recent stuff
+        div.parallax
+            img(src='/img/golf_bg.jpg')
+    // Services
+    div.container
+        div.row
+            h2.section-header Services
+        div.row
+            div.col.l6.s12
+                div.card.medium.light-blue.accent-4.z-depth-3
+                    div.card-content.white-text
+                        h3.center-align
+                            i.material-icons.large(aria-hidden='true') desktop_windows
+                        div.divider
+                        span.card-title Website Design
+                        p Ubi est primus ventus? Going to the next world doesn’t realize living anymore than traping creates true chaos. The vision is a true spirit.
+                    div.card-action
+                        a(href='#') Find out more
+            div.col.l6.s12
+                div.card.medium.blue.darken-4.z-depth-3
+                    div.card-content.white-text
+                        h3.center-align
+                            i.material-icons.large(aria-hidden='true') devices_other
+                        div.divider
+                        span.card-title App Development
+                        p I eat this rumour, it's called intelligent energy. Ionic cannon at the saucer section was the tragedy of attitude, yearned to a spheroid nanomachine.
+                    div.card-action
+                        a(href='#') Find out more
+        div.row
+            div.col.l6.s12
+                div.card.medium.blue.darken-4.z-depth-3
+                    div.card-content.white-text
+                        h3.center-align
+                            i.material-icons.large(aria-hidden='true') brush
+                        div.divider
+                        span.card-title Graphic Design
+                        p The sun sails with pestilence, trade the fortress until it rises. The jack hauls with greed, pull the galley until it whines.
+                    div.card-action
+                        a(href='#') Find out more
+            div.col.l6.s12
+                div.card.medium.light-blue.accent-4.z-depth-3
+                    div.card-content.white-text
+                        h3.center-align
+                            i.material-icons.large(aria-hidden='true') camera
+                        div.divider
+                        span.card-title Photography
+                        p Where is the carnivorous ferengi? It is a proud advice, sir. The ship is more c-beam now than queen. devastated and proudly reliable.
+                    div.card-action
+                        a(href='#') Find out more
+    // CTA
+    div.parallax-container.valign-wrapper.z-depth-2
+        div.container
+            div.row.center
+                div.col.l10.offset-l1.valign
+                    h2.center-align.white-text.cta Wanna hook up?
+                    a(href='#').center.btn-large.hoverable.red.accent-2 Get in touch
+        div.parallax
+            img(src='/img/bridge_bg.jpg')
+    // Recent stuff
+    div.container
+        h2.section-header Recent Stuff
+        div.row
+            div.col.l4.m8.offset-m2.s12
+                div.card
+                    div.card-image.waves-effect.waves-block.waves-light
+                        img.activator(src='/img/recent_bg2.jpg')
+                    div.card-content
+                        span.card-title.activator.grey-text.text-darken-4 Tommy Condons
+                            i.material-icons.right more_vert
+                        p
+                            a(href='#') View Live Site
+                    div.card-reveal
+                        span.card-title.grey-text.text-darken-4 Tommy Condons
+                            i.material-icons.right close
+                        p What’s the secret to soaked and crusted cabbage? Always use warm chipotle chile powder. Per guest prepare one container of lime with squeezed ground beef for dessert?
+            div.col.l4.m8.offset-m2.s12
+                div.card
+                    div.card-image.waves-effect.waves-block.waves-light
+                        img.activator(src='/img/recent_bg1.jpg')
+                    div.card-content
+                        span.card-title.activator.grey-text.text-darken-4 Gabble
+                            i.material-icons.right more_vert
+                        p
+                            a(href='#') View Live Site
+                    div.card-reveal
+                        span.card-title.grey-text.text-darken-4 Pictures!
+                            i.material-icons.right close
+                        p Lasses stutter on life at la marsa beach! Avast, proud tobacco. you won't loot the pacific ocean. Scrawny, warm winds impatiently fear a misty, stormy sea-dog?
+            div.col.l4.m8.offset-m2.s12
+                div.card
+                    div.card-image.waves-effect.waves-block.waves-light
+                        img.activator(src='/img/recent_bg3.jpg')
+                    div.card-content
+                        span.card-title.activator.grey-text.text-darken-4 Project 3
+                            i.material-icons.right more_vert
+                        p
+                            a(href='#') View Live Site
+                    div.card-reveal
+                        span.card-title.grey-text.text-darken-4 Project 3
+                            i.material-icons.right close
+                        p Engage, gravimetric galaxy! Death at the wormhole that is when solid hur'qs go. Hypnosis at the solar system was the peace of adventure, imitated to a seismic admiral?
+    div.container
+        div.divider
+    // Contact
+    div.container
+        div.row
+            div.col.l8.offset-l2.m12.s12
+                div.row
+                    form.col.s12
+                        div.row
+                            div.input-field.col.s6
+                                input.validate#first_name(placeholder='First Name' type='text')
+                                label(for='first_name') First Name
+                            div.input-field.col.s6
+                                input.validate#last_name(placeholder='Last Name' type='text')
+                                label(for='last_name') Last Name
+                        div.row
+                            div.input-field.col.s12
+                                input.validate#email(placeholder='Email Address' type='email')
+                                label(for='email') Email
+                        div.row
+                            div.input-field.col.s12
+                                input.validate#sup(placeholder='Sup' type='text')
+                                label(for='sup') Asuh dude
+    // About me
+    div.container
+        div.row
+            h2.section-header About Me
+        div.row
+            p.flow-text Yo-ho-ho, view me parrot, ye gutless pegleg! Cloudy loves lead to the courage. Doubloons rise with endurance at the coal-black tubbataha reef! Oh, never fear a mate. The mast loots with strength, burn the lighthouse until it travels!
+    // Footer
+    footer.page-footer.blue-grey.darken-3
+        div.container
+            div.row
+                div.col.l6.s12
+                    h5.white-text Gallus, poeta, et detrius.
+                    ul
+                        li.grey-text.text-lighten-4 List One
+                        li.grey-text.text-lighten-4 List Two
+                        li.grey-text.text-lighten-4 List Three
+                        li.grey-text.text-lighten-4 List Four
+                        li.grey-text.text-lighten-4 List Five
+                div.col.l4.offset-l2.s12
+                    h5.white-text Aw, ahoy.
+                    ul
+                        li
+                            a(href='#').grey-text.text-lighten-3 List One
+                        li
+                            a(href='#').grey-text.text-lighten-3 List Two
+        div.footer-copyright.blue-grey.darken-4
+            div.container
+                span &copy; 2017 Copyright Michael Quarles
+                a(href='#').grey-text.text-lighten-4.right Privacy Policy

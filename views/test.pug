@@ -1,5 +1,68 @@
 extends layout
 
 block content
-	h1= username
-	h2= password
+    nav.light-blue(role='navigation')
+        div.nav-wrapper.container
+            a.brand-logo#logo-container Gabble
+            ul.right.hide-on-med-and-down
+                li
+                    a(href='#') Login
+                li
+                    a(href='#') Sign Up
+            ul.side-nav#nav-mobile(style='transform: translateX(-100%);')
+                li
+                    a(href='#') Login
+                li
+                    a(href='#') Sign Up
+            a.button-collapse(href='#', data-activates='nav-mobile')
+                i.material-icons menu
+    div.section.no-pad-bot#index-banner
+        div.container
+            h1.header.center.orange-text Welcome to Gabble!
+            div.row.center
+                h5.header.col.s12.light Read some gabs or whatever!
+            div.row.center
+                a.btn-large.waves-effect.waves-light.orange#download-button(href='#') Gabble!
+    div.container
+        div.section
+            div.row
+                div.col.s12.m4
+                    div.icon-block
+                        h2.center.light-blue-text
+                            i.material-icons flash_on
+                        h5.center Super quick gabs
+                        p.light To some, an individual is a beauty for realizing. A synthetic form of attraction is the paradox.
+                div.col.s12.m4
+                    div.icon-block
+                        h2.center.light-blue-text
+                            i.material-icons group
+                        h5.center Super quick gabs
+                        p.light Courage, treasure, and love. This galaxy has only been translated by a most unusual ship.
+                div.col.s12.m4
+                    div.icon-block
+                        h2.center.light-blue-text
+                            i.material-icons settings
+                        h5.center Super quick gabs
+                        p.light Pius, regius lunas superbe prensionem de domesticus, altus fiscina. Rums rise with strength! Admirals wobble with friendship!
+    footer.page-footer.orange
+        div.container
+            div.row
+                div.col.l6.s12
+                    h5.white-text Gabble gabble
+                    p.grey-text.text-lighten-4 Torquiss studere in raptus lutetia! Never develop the spirit, for you cannot witness it. After cooking the chicken lards, mash up nachos, tuna and vinegar with it in a cooker.
+                div.col.l3.s12
+                    h5.white-text Settings
+                    ul
+                        li.white-text Link 1
+                        li.white-text Link 2
+                        li.white-text Link 3
+                div.col.l3.s12
+                    h5.white-text Connect
+                    ul
+                        li.white-text Link 1
+                        li.white-text Link 2
+                        li.white-text Link 3
+        div.footer-copyright
+            div.container
+                span Made by
+                    a.orange-text.text-lighten-3(href='#') Michael Quarles
