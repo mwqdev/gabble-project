@@ -1,8 +1,12 @@
+html {
+    font-family: "Source Code Pro", sans-serif;
+}
+
 body {
 
 }
 
-.logo {
+.logo-portfolio {
     font-weight: 300;
 }
 
@@ -26,6 +30,16 @@ body {
 
 form {
     margin-top: 20px;
+}
+
+.error-link {
+    text-decoration: underline;
+}
+
+.like-text {
+    font-weight: bold;
+    font-size: 1.15rem;
+    vertical-align: top;
 }
 
 /*

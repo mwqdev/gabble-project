@@ -1,0 +1,107 @@
+extends layout
+
+block content
+    // Navigation Section
+    nav.blue-grey.darken-1.z-depth-3(role='navigation')
+        div.nav-wrapper.container
+            a.brand-logo#logo-container(href='/gabble')
+                span.logo.grey-text.text-lighten-2= title
+            ul.right.hide-on-med-and-down
+                if user != 'Guest'
+                    li
+                        a(href='/gabble/newgab') Gab
+                    li
+                        a(href='#') #{user}
+                    li
+                        a(href='/users/signout') Sign out
+                else
+                    li
+                        a(href='/users/signup') Sign up
+                    li
+                        a(href='/users') Sign in
+            ul.side-nav#nav-mobile(style='transform: translateX(-100%);')
+                if user != 'Guest'
+                    li
+                        a(href='/gabble/newgab') Gab
+                    li
+                        a(href='#') #{user}
+                    li
+                        a(href='/users/signout') Sign out
+                else
+                    li
+                        a(href='/users/signup') Sign up
+                    li
+                        a(href='/users') Sign in
+            a.button-collapse(href='#', data-activates='nav-mobile')
+                i.material-icons menu
+    // Gabble Section
+    div.container
+        h3.section-header.center Welcome #{user}!
+        div.row
+            div.col.s10.offset-l1
+                div.divider
+                if gabs
+                    ul.collapsible(data-collapsible='expandable')
+                        each val in gabs
+                            li
+                                div.collapsible-header
+                                    div.container
+                                        div.row
+                                            div.col.l9.valign-wrapper
+                                                i.material-icons.left.valign chat_bubble_outline
+                                                h5.left= val.title
+                                            div.col.l3
+                                                h5.right= val.displayName
+                                        div.row
+                                            div.col.s12
+                                                span.left Likes - #{val.likes}
+                                                span.right= val.timeStamp
+                                div.collapsible-body
+                                    div.row
+                                        div.col.s12
+                                            span.left-align.flow-text= val.body
+                                        form.col.s4.right(method='post')
+                                            if val.likes
+                                                div.row
+                                                    div.col.s12
+                                                        a.green-text.modal-trigger.right(href='#likes_modal' + val.gabId) View likes
+                                                div(id='likes_modal' + val.gabId).modal
+                                                    div.modal-content
+                                                        if val.fans
+                                                            ul
+                                                                each value in val.fans
+                                                                    li #{value} liked this.
+                                                    //div.modal-footer
+                                                    //    button.modal-action.modal-close.waves-effect.waves-green.btn-flat Confirm
+                                                div.row
+                                                    div.col.s12
+                                                        button.green.lighten-2.white-text.btn.waves-effect.waves-light.right(type='submit' formaction='/gabble/likegab/' + val.gabId)
+                                                            span.white-text.like-text= val.likes
+                                                            if val.liked
+                                                                i.material-icons star
+                                                            else
+                                                                i.material-icons star_border
+                                            else
+                                                div.row
+                                                    div.col.s12
+                                                        button.green.lighten-2.white-text.btn.waves-effect.waves-light.right(type='submit' formaction='/gabble/likegab/' + val.gabId)
+                                                            i.material-icons star_border
+                                            if val.userId == userId
+                                                div.row
+                                                    div.col.s12
+                                                        //a.red.lighten-2.white-text.btn.waves-effect.waves-light.right.modal-trigger(href='#confirm_del')
+                                                        button.modal-trigger.red.lighten-2.white-text.btn.waves-effect.waves-light.right(data-target='confirm_del')
+                                                            i.material-icons delete
+                                                div#confirm_del.modal
+                                                    div.modal-content
+                                                        h4 Are you sure?
+                                                        p Deleting a gab cannot be undone.
+                                                    div.modal-footer
+                                                        button.modal-action.modal-close.waves-effect.waves-green.btn-flat(type='submit', formaction='/gabble/deletegab/' + val.gabId) Confirm
+        if errors
+            div.row
+                div.col.s12.m6.offset-m3
+                    div.card-panel.red.lighten-1.white-text.center.center-align
+                        ul
+                            each val in errors
+                                li= val.msg

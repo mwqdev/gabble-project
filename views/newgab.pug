@@ -1,0 +1,69 @@
+extends layout
+
+block content
+    // Navigation Section
+    nav.blue-grey.darken-1.z-depth-3(role='navigation')
+        div.nav-wrapper.container
+            a.brand-logo#logo-container(href='/gabble')
+                span.logo.grey-text.text-lighten-2= title
+            ul.right.hide-on-med-and-down
+                if user != 'Guest'
+                    li
+                        a(href='#') Gab
+                    li
+                        a(href='#') #{user}
+                    li
+                        a(href='/users/signout') Sign out
+                else
+                    li
+                        a(href='/users/signup') Sign up
+                    li
+                        a(href='/users') Sign in
+            ul.side-nav#nav-mobile(style='transform: translateX(-100%);')
+                if user != 'Guest'
+                    li
+                        a(href='#') Gab
+                    li
+                        a(href='#') #{user}
+                    li
+                        a(href='/users/signout') Sign out
+                else
+                    li
+                        a(href='/users/signup') Sign up
+                    li
+                        a(href='/users') Sign in
+            a.button-collapse(href='#', data-activates='nav-mobile')
+                i.material-icons menu
+    // Create gab form
+    div.container
+        h3.section-header.center Write a gab
+        div.row
+            div.col.l10.offset-l1.m12.s12
+                form.col.s12(method='post')
+                    div.row
+                        div.input-field.col.s6
+                            i.material-icons title
+                            input#gab_title(name='gab_title' type='text', data-length='30' placeholder='Gab title')
+                    div.row
+                        div.input-field.col.s12
+                            i.material-icons mode_edit
+                            textarea.materialize-textarea#gab_body(name='gab_body' placeholder='Gab body' data-length='140')
+                    div.row
+                        button.btn.waves-effect.waves-light.right(type='submit' name='action') Submit
+                            i.material-icons.right chat_bubble
+        div.row
+            div.col.s12.m6.offset-m3
+                if errors
+                    div.card-panel.red.lighten-1.white-text.center.center-align
+                        ul
+                            each val in errors
+                                li= val.msg
+                            //h1 Create a gab
+                            //div.formWrapper
+                            //    section.form
+                            //        form(method='post' action='/gabs/create')
+                            //            label(for='title') Title
+                            //            input(type='text', name='title' id='title')
+                            //            label(for='content') Content
+                            //            input(type='textarea', name='content' id='content')
+                            //            input.button(type='submit')

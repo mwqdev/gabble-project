@@ -3,55 +3,63 @@ const router = express.Router();
 
 const models = require('../models');
 
-let defaultUser = 'guest';
+let defaultUser = 'Guest';
+
+let model = {};
+model.title = 'Gabble';
+model.user = defaultUser;
 
 router.get('/', function (req, res) {
-    if(req.session && req.session.authenticated) {
+
+    if (req.session && req.session.authenticated) {
         let user = models.User.findOne({
             where: {
                 username: req.session.username,
-                password: req.session.password
+                displayName: req.session.displayName
             }
         }).then((user) => {
-            req.session.username = req.body.username;
-            req.session.userId = user.dataValues.id;
-            let username = req.session.username;
-            let userid = req.session.userId;
-            res.render('index', {
-                user: user
-            });
-        })
+            if (user) {
+                req.session.username = req.body.username;
+                req.session.userId = user.dataValues.id;
+                req.session.displayName = user.displayName;
+                req.session.authenticated = true;
+
+                model.user = req.session.displayName;
+                model.userId = req.session.userId;
+
+                console.log(model);
+
+                res.redirect('/gabble');
+            }
+        });
     }
-    res.render('signin');
+    res.render('signin', model);
 });
 
 router.post('/', (req, res) => {
 
-    let username = req.body.username;
-    let password = req.body.password;
-
     models.User.findOne({
         where: {
-            username: username,
-            password: password
+            username: req.body.username,
+            password: req.body.password
         }
     }).then((user) => {
         if (!user) {
-            defaultUser = null;
-            res.redirect('/users/signup');
+            model.user = null;
+            res.render('signin', model);
+            model.user = 'Guest';
         } else {
             req.session.username = user.username;
             req.session.displayName = user.displayName;
             req.session.userId = user.dataValues.id;
             req.session.authenticated = true;
-            res.redirect('/');
+            res.redirect('/gabble');
         }
     });
 });
 
 router.get('/signup', (req, res) => {
-    res.render('signup', {title: 'Authentication', user: defaultUser});
-    defaultUser = 'guest';
+    res.render('signup', model);
 });
 
 router.post('/signup', (req, res) => {
@@ -62,13 +70,17 @@ router.post('/signup', (req, res) => {
         if (user) {
             errors = [{param: 'username', msg: 'Username already in use', value: ''}];
             req.session.errors = errors;
-            res.render('signup', {title: 'Authentication', errors: req.session.errors, user: defaultUser});
+
+            model.errors = req.session.errors;
+            res.render('signup', model);
+
             req.session.errors = null;
         }
     });
 
     req.check('username', 'Username must be at least 4 characters').isLength({min: 4});
     req.check('username', 'Username may only contain alphanumeric characters').isAlphanumeric();
+    req.check('displayName', 'Display name must be at least 4 characters').isLength({min: 4});
     req.check('password', 'Passwords must match').equals(req.body.confirmPassword);
     req.check('password', 'Password must be at least 6 characters').isLength({min: 6});
 
@@ -76,7 +88,8 @@ router.post('/signup', (req, res) => {
 
     if (errors) {
         req.session.errors = errors;
-        res.render('signup', {title: 'Authentication', errors: req.session.errors, user: defaultUser});
+        model.errors = req.session.errors;
+        res.render('signup', model);
         req.session.errors = null;
     } else {
         let user = models.User.build({
@@ -87,19 +100,21 @@ router.post('/signup', (req, res) => {
         user.save().then((user) => {
             req.session.username = user.username;
             req.session.displayName = user.displayName;
+            req.session.userId = user.dataValues.id;
             req.session.authenticated = true;
-            res.redirect('/');
+            res.redirect('/gabble');
         });
     }
 });
 
-router.get('/profile', (req, res) => {
-    res.render('profile');
-});
+// router.get('/profile', (req, res) => {
+//     res.render('profile');
+// });
 
 router.get('/signout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
+    req.session.destroy().then(() => {
+        res.redirect('/gabble');
+    });
 });
 
 module.exports = router;

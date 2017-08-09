@@ -1,22 +1,60 @@
 extends layout
 
 block content
-    header
-        nav
-            ul
-                a(href='/gabs')
-                    li Gabble
-                a(href='/users')
-                    li Log in
-                a(href='/users/signup')
-                    li Sign up
-    section.formWrapper
-        h1 Sign-in
-        section.form
-            form(method='post')
-                label(for='username') Username
-                input(type='text', name='username', id='username')
-                label(for='password') Password
-                input(type='password', name='password', id='password')
-                input.button(type='submit')
-                a.signup(href='/users/signup') Sign-up
+    // Navigation Section
+    nav.blue-grey.darken-1.z-depth-3(role='navigation')
+        div.nav-wrapper.container
+            a.brand-logo#logo-container(href='/gabble')
+                span.logo.grey-text.text-lighten-2= title
+            ul.right.hide-on-med-and-down
+                if user != 'Guest'
+                    li
+                        a(href='/gabble/newgab') Gab
+                    li
+                        a(href='#') #{user}
+                    li
+                        a(href='/users/signout') Sign out
+                else
+                    li
+                        a(href='/users/signup') Sign up
+                    li
+                        a(href='#') Sign in
+
+            ul.side-nav#nav-mobile(style='transform: translateX(-100%);')
+                if user != 'Guest'
+                    li
+                        a(href='/gabble/newgab') Gab
+                    li
+                        a(href='#') #{user}
+                    li
+                        a(href='/users/signout') Sign Out
+                else
+                    li
+                        a(href='/users/signup') Sign up
+                    li
+                        a(href='#') Sign in
+            a.button-collapse(href='#', data-activates='nav-mobile')
+                i.material-icons menu
+    // Sign in form
+    div.container
+        div.row
+            h3.section-header.center Sign In
+            div.col.l10.offset-l1.m12.s12
+                div.row
+                    form.col.s12(method='post')
+                        div.row
+                            div.input-field.col.l6.m6.s12
+                                input.validate#username(type='text' name='username')
+                                label(for='username') Username
+                            div.input-field.col.l6.m6.s12
+                                input.validate#password(type='password' name='password')
+                                label(for='password') Password
+                        div.row
+                            button.btn.waves-effect.waves-light.right(type='submit' name='action') Submit
+                                i.material-icons.right send
+            div.row
+                div.col.s12.m6.offset-m3
+                    if !user
+                        div.card-panel.red.lighten-1.white-text.center.center-align
+                            span User not found. Please try again or&nbsp
+                                a(href='/users/signup').white-text.error-link sign up

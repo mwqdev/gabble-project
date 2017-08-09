@@ -8,7 +8,7 @@ const port = parseInt(process.env.PORT) || '3000';
 
 const index = require('./routes/index');
 const users = require('./routes/users');
-const gabs = require('./routes/gabs');
+const gabble = require('./routes/gabble');
 const test = require('./routes/test');
 
 const app = express();
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/gabs', gabs);
+app.use('/gabble', gabble);
 app.use('/test', test);
 
 app.use((req, res, next) => {
